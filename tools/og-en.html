@@ -1,0 +1,132 @@
+<!-- Source for docs/assets/og.png (1200x630 social preview).
+     Render at exactly 1200x630 and export as PNG. -->
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden}
+  body{background:#0b0b0a;color:#fff;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    position:relative}
+  .rule{position:absolute;inset:0 0 auto 0;height:5px;display:flex}
+  .rule i{flex:1}
+  .wrap{padding:52px 75px 0}
+  .eyebrow{font-size:17px;font-weight:800;letter-spacing:5px;color:#8b8a84}
+  h1{font-size:56px;font-weight:800;letter-spacing:-2.2px;line-height:1.06;margin-top:14px}
+  h1 em{font-style:normal;color:#77766f}
+
+  .row{display:flex;align-items:flex-start;gap:30px;margin-top:56px}
+  .cell{width:186px}
+  .card{height:196px;border-radius:18px;display:grid;place-items:center;
+    border:1.6px solid;position:relative}
+  .card svg{width:92px;height:92px}
+  .n{position:absolute;top:11px;left:14px;font-size:13px;font-weight:800;opacity:.55}
+  .name{margin-top:15px;font-size:20px;font-weight:800;letter-spacing:-.5px;text-align:center}
+  .unit{margin-top:3px;font-size:13.5px;font-weight:500;color:#77766f;text-align:center}
+  .arrow{align-self:center;margin-top:-58px;color:#4a4a45;font-size:22px;font-weight:700}
+
+  .foot{position:absolute;left:75px;right:75px;bottom:40px}
+  .foot hr{border:0;border-top:1px solid #26262300;border-top-color:#262623;margin-bottom:22px}
+  .f1{font-size:20px;color:#c3c2b7;letter-spacing:-.3px}
+  .f2{margin-top:9px;font-size:16px;color:#6e6d67;letter-spacing:-.2px;
+      display:flex;justify-content:space-between}
+  .f2 b{font-weight:700;color:#8b8a84;letter-spacing:1.5px;
+        font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:14px}
+</style></head><body>
+
+<div class="rule"><i style="background:#2a78d6"></i><i style="background:#eb6834"></i><i style="background:#1baf7a"></i><i style="background:#eda100"></i><i style="background:#e87ba4"></i></div>
+
+<div class="wrap">
+  <div class="eyebrow">FOR WORKING ENGINEERS</div>
+  <h1>AI Engineering <em>· The Complete Guide</em></h1>
+
+  <div class="row">
+
+    <!-- 1 PROMPT — a terminal prompt: what you type -->
+    <div class="cell">
+      <div class="card" style="border-color:#2a78d6;background:#101c2b">
+        <span class="n" style="color:#2a78d6">1</span>
+        <svg viewBox="0 0 64 64" fill="none" stroke="#4b93e4" stroke-width="5.5"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 21 L27 32 L15 43"/><path d="M34 44 H50"/>
+        </svg>
+      </div>
+      <div class="name" style="color:#4b93e4">Prompt</div>
+      <div class="unit">one sentence</div>
+    </div>
+    <div class="arrow">›</div>
+
+    <!-- 2 CONTEXT — a window with a finite budget partly spent -->
+    <div class="cell">
+      <div class="card" style="border-color:#eb6834;background:#2a1610">
+        <span class="n" style="color:#eb6834">2</span>
+        <svg viewBox="0 0 64 64" fill="none" stroke="#ef7d4d" stroke-width="4.5">
+          <rect x="7" y="15" width="50" height="34" rx="6"/>
+          <rect x="13" y="21" width="21" height="22" rx="3" fill="#ef7d4d" stroke="none"/>
+          <path d="M40 26 h9 M40 32 h9 M40 38 h5" stroke-width="3.4" stroke-linecap="round" opacity=".55"/>
+        </svg>
+      </div>
+      <div class="name" style="color:#ef7d4d">Context</div>
+      <div class="unit">one window</div>
+    </div>
+    <div class="arrow">›</div>
+
+    <!-- 3 HARNESS — everything strapped around the model -->
+    <div class="cell">
+      <div class="card" style="border-color:#1baf7a;background:#0d2620">
+        <span class="n" style="color:#1baf7a">3</span>
+        <svg viewBox="0 0 64 64" fill="none" stroke="#2ec98f" stroke-width="3.6">
+          <path d="M22 22 L28 28 M42 22 L36 28 M22 42 L28 36 M42 42 L36 36" stroke-width="3"/>
+          <circle cx="32" cy="32" r="9.5" fill="#2ec98f" stroke="none"/>
+          <rect x="9"  y="9"  width="13" height="13" rx="4"/>
+          <rect x="42" y="9"  width="13" height="13" rx="4"/>
+          <rect x="9"  y="42" width="13" height="13" rx="4"/>
+          <rect x="42" y="42" width="13" height="13" rx="4"/>
+        </svg>
+      </div>
+      <div class="name" style="color:#2ec98f">Harness</div>
+      <div class="unit">one run</div>
+    </div>
+    <div class="arrow">›</div>
+
+    <!-- 4 LOOP — it comes back round on its own -->
+    <div class="cell">
+      <div class="card" style="border-color:#eda100;background:#2b2110">
+        <span class="n" style="color:#eda100">4</span>
+        <svg viewBox="0 0 64 64" fill="none" stroke="#e0a821" stroke-width="5.5"
+             stroke-linecap="round" stroke-linejoin="round">
+          <path d="M46.5 20.5 A20 20 0 1 0 51 34"/>
+          <path d="M39 20 L47.4 19.6 L47 11"/>
+        </svg>
+      </div>
+      <div class="name" style="color:#e0a821">Loop</div>
+      <div class="unit">the repetition</div>
+    </div>
+    <div class="arrow">›</div>
+
+    <!-- 5 GRAPH — fan out, verify, merge -->
+    <div class="cell">
+      <div class="card" style="border-color:#e87ba4;background:#2b1620">
+        <span class="n" style="color:#e87ba4">5</span>
+        <svg viewBox="0 0 64 64" fill="none" stroke="#e88ab0" stroke-width="2.9">
+          <path d="M13 20 L31 33 M13 47 L31 33 M31 33 L50 15 M31 33 L51 45 M50 15 L51 45"/>
+          <circle cx="13" cy="20" r="5.2" fill="#e88ab0" stroke="none"/>
+          <circle cx="13" cy="47" r="5.2" fill="#e88ab0" stroke="none"/>
+          <circle cx="31" cy="33" r="6.4" fill="#e88ab0" stroke="none"/>
+          <circle cx="50" cy="15" r="5.2" fill="#e88ab0" stroke="none"/>
+          <circle cx="51" cy="45" r="5.2" fill="#e88ab0" stroke="none"/>
+        </svg>
+      </div>
+      <div class="name" style="color:#e88ab0">Graph</div>
+      <div class="unit">the arrangement</div>
+    </div>
+
+  </div>
+</div>
+
+<div class="foot">
+  <hr>
+  <div class="f1">One example repository, grown five times, into 16 copy-pasteable files.</div>
+  <div class="f2"><span>Every number traced to a primary source · current as of July 2026</span><b>EN · KO</b></div>
+</div>
+
+</body></html>
