@@ -12,6 +12,11 @@ var I18N = {
 ko: {
   copy:'복사', copied:'복사됨', copyFail:'실패',
 
+  /* share menu */
+  shareCopy:'링크 복사', shareCopied:'복사했습니다', shareCopyFail:'복사 실패',
+  shareX:'X에 공유', shareLi:'LinkedIn에 공유', shareHn:'Hacker News에 올리기',
+  shareMore:'다른 앱으로 공유…',
+
   /* skill builder */
   sbDesc:[
     ': src 안에서 에러 처리가 없는 await 호출을 찾아',
@@ -121,6 +126,11 @@ ko: {
 /* ---------------------------------------------------------- en */
 en: {
   copy:'Copy', copied:'Copied', copyFail:'Failed',
+
+  /* share menu */
+  shareCopy:'Copy link', shareCopied:'Link copied', shareCopyFail:'Copy failed',
+  shareX:'Share on X', shareLi:'Share on LinkedIn', shareHn:'Submit to Hacker News',
+  shareMore:'Share via…',
 
   /* skill builder */
   sbDesc:[
@@ -254,6 +264,165 @@ var T = I18N[LANG];
     try{ localStorage.setItem('ael-lang', to); }catch(e){}
     a.setAttribute('href','../'+to+'/'+location.hash);
   });
+})();
+
+/* ---------- GitHub star count ----------
+   Cached for six hours so a busy day of readers never trips the
+   unauthenticated rate limit. Fails silently: no count, no broken UI. */
+(function(){
+  var el = document.getElementById('starCount');
+  var btn = document.getElementById('starBtn');
+  if (!el || !btn) return;
+  var REPO = btn.getAttribute('data-repo') || '';
+  var KEY = 'ael-stars', TTL = 6 * 60 * 60 * 1000;
+
+  function show(n){
+    el.textContent = n >= 10000 ? Math.round(n / 1000) + 'k'
+                   : n >= 1000  ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k'
+                   : String(n);
+    btn.classList.add('has-count');
+  }
+  var cached = null;
+  try { cached = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch(e){}
+  if (cached && typeof cached.n === 'number'){
+    show(cached.n);
+    if (Date.now() - cached.t < TTL) return;         // fresh enough — no request
+  }
+  if (!REPO || !window.fetch) return;
+  fetch('https://api.github.com/repos/' + REPO, { headers:{ Accept:'application/vnd.github+json' } })
+    .then(function(r){ return r.ok ? r.json() : null; })
+    .then(function(d){
+      if (!d || typeof d.stargazers_count !== 'number') return;
+      show(d.stargazers_count);
+      try { localStorage.setItem(KEY, JSON.stringify({ n:d.stargazers_count, t:Date.now() })); } catch(e){}
+    })
+    .catch(function(){});
+})();
+
+/* ---------- share menu ----------
+   Shares location.href, so a reader who followed a TOC link shares the
+   exact section they are on. Brand marks are solid glyphs, UI actions are
+   stroked — one pixel smaller for the solids so they weigh the same. */
+(function(){
+  var btn  = document.getElementById('shareBtn');
+  var menu = document.getElementById('shareMenu');
+  if (!btn || !menu) return;
+  document.body.appendChild(menu);   // out of the topbar's backdrop-filter containing block
+
+  function place(){
+    var r = btn.getBoundingClientRect();
+    menu.style.top   = Math.round(r.bottom + 8) + 'px';
+    menu.style.right = Math.round(Math.max(10, window.innerWidth - r.right)) + 'px';
+  }
+
+  var I = {
+    link:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.85" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 13.7a4.6 4.6 0 0 0 6.9.5l2.6-2.6a4.6 4.6 0 0 0-6.5-6.5l-1.5 1.5"/><path d="M13.7 10.3a4.6 4.6 0 0 0-6.9-.5l-2.6 2.6a4.6 4.6 0 0 0 6.5 6.5l1.5-1.5"/></svg>',
+    ok:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.6l4.9 4.9L19.5 6.9"/></svg>',
+    warn:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.2M12 16.4v.1"/></svg>',
+    x:'<svg class="brandmark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+    li:'<svg class="brandmark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 1 1 2.5 1a2.49 2.49 0 0 1 2.48 2.5zM5 8H0v16h5zm7.98 0H8.01v16h4.92v-8.4c0-4.55 5.94-4.92 5.94 0V24H24V13.87c0-7.88-8.92-7.6-11.02-3.72z"/></svg>',
+    hn:'<svg class="brandmark" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3.4 4.2H7L12 11.6 17 4.2h3.6L13.6 14.4V20h-3.2v-5.6z"/></svg>',
+    more:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15.5V3.6"/><path d="M8.4 7.2L12 3.6l3.6 3.6"/><path d="M5 13.5v5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5v-5"/></svg>'
+  };
+
+  function row(icon, label, href, onClick){
+    var el = document.createElement(href ? 'a' : 'button');
+    if (href){ el.href = href; el.target = '_blank'; el.rel = 'noopener'; }
+    else { el.type = 'button'; }
+    el.setAttribute('role', 'menuitem');
+    el.innerHTML = icon + '<span>' + label + '</span>';
+    if (onClick) el.addEventListener('click', onClick);
+    return el;
+  }
+  function rule(){ return document.createElement('hr'); }
+
+  function copyLink(el){
+    var url = location.href;
+    function settle(cls, icon, label){
+      el.className = cls;
+      el.innerHTML = icon + '<span>' + label + '</span>';
+      setTimeout(function(){ close(true); }, 950);
+    }
+    var ok   = function(){ settle('done', I.ok, T.shareCopied); };
+    var fail = function(){ settle('fail', I.warn, T.shareCopyFail); };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(url).then(ok, legacy);
+    } else { legacy(); }
+    function legacy(){
+      try{
+        var ta = document.createElement('textarea');
+        ta.value = url; ta.setAttribute('readonly', '');
+        ta.style.cssText = 'position:fixed;top:-2000px;opacity:0';
+        document.body.appendChild(ta);
+        ta.select(); ta.setSelectionRange(0, ta.value.length);
+        var done = document.execCommand('copy');
+        document.body.removeChild(ta);
+        done ? ok() : fail();
+      } catch(e){ fail(); }
+    }
+  }
+
+  /* rebuilt on every open so the hash is always current */
+  function build(){
+    var u = encodeURIComponent(location.href);
+    var t = encodeURIComponent(document.title);
+    menu.innerHTML = '';
+    var copy = row(I.link, T.shareCopy, null, function(e){ e.preventDefault(); copyLink(copy); });
+    menu.appendChild(copy);
+    menu.appendChild(rule());
+    menu.appendChild(row(I.x,  T.shareX,  'https://x.com/intent/post?text=' + t + '&url=' + u));
+    menu.appendChild(row(I.li, T.shareLi, 'https://www.linkedin.com/sharing/share-offsite/?url=' + u));
+    menu.appendChild(row(I.hn, T.shareHn, 'https://news.ycombinator.com/submitlink?u=' + u + '&t=' + t));
+    if (navigator.share){
+      menu.appendChild(rule());
+      menu.appendChild(row(I.more, T.shareMore, null, function(){
+        navigator.share({ title: document.title, url: location.href }).catch(function(){});
+        close(true);
+      }));
+    }
+  }
+
+  function items(){ return [].slice.call(menu.querySelectorAll('button,a')); }
+
+  function open(){
+    build();
+    menu.hidden = false;
+    place();
+    menu.classList.add('enter');
+    void menu.offsetHeight;              // commit the entrance state…
+    menu.classList.remove('enter');      // …then transition out of it, same task
+    btn.setAttribute('aria-expanded', 'true');
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onOutside, true);
+  }
+  function close(refocus){
+    if (menu.hidden) return;
+    menu.hidden = true;
+    btn.setAttribute('aria-expanded', 'false');
+    document.removeEventListener('keydown', onKey);
+    document.removeEventListener('pointerdown', onOutside, true);
+    if (refocus) btn.focus();
+  }
+  function onOutside(e){
+    if (!menu.contains(e.target) && !btn.contains(e.target)) close(false);
+  }
+  function onKey(e){
+    if (e.key === 'Escape'){ e.preventDefault(); close(true); return; }
+    if (e.key === 'Tab'){ close(false); return; }
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp') return;
+    e.preventDefault();
+    var list = items(), i = list.indexOf(document.activeElement);
+    if (e.key === 'ArrowDown') i = i < 0 || i === list.length - 1 ? 0 : i + 1;
+    else                       i = i <= 0 ? list.length - 1 : i - 1;
+    list[i].focus();
+  }
+
+  btn.addEventListener('click', function(){ menu.hidden ? open() : close(true); });
+  btn.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowDown' && menu.hidden){ e.preventDefault(); open(); items()[0].focus(); }
+  });
+  menu.addEventListener('click', function(e){ if (e.target.closest('a')) close(false); });
+  window.addEventListener('resize', function(){ close(false); });
 })();
 
 /* ---------- build TOC + scrollspy + progress ---------- */
