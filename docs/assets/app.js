@@ -267,14 +267,18 @@ var T = I18N[LANG];
 })();
 
 /* ---------- GitHub star count ----------
-   Cached for six hours so a busy day of readers never trips the
-   unauthenticated rate limit. Fails silently: no count, no broken UI. */
+   Stale-while-revalidate: paint the cached number immediately so there is no
+   flash, then always re-fetch and correct it. The cache is for instant paint
+   and as the fallback when the request fails — never a reason to skip the
+   request, or the number stays wrong for as long as the cache lives.
+   One call per page load; the unauthenticated limit is 60/hour per IP, and a
+   429/403 simply leaves the cached value on screen. */
 (function(){
   var el = document.getElementById('starCount');
   var btn = document.getElementById('starBtn');
   if (!el || !btn) return;
   var REPO = btn.getAttribute('data-repo') || '';
-  var KEY = 'ael-stars', TTL = 6 * 60 * 60 * 1000;
+  var KEY = 'ael-stars';
 
   function show(n){
     el.textContent = n >= 10000 ? Math.round(n / 1000) + 'k'
@@ -282,19 +286,18 @@ var T = I18N[LANG];
                    : String(n);
     btn.classList.add('has-count');
   }
-  var cached = null;
-  try { cached = JSON.parse(localStorage.getItem(KEY) || 'null'); } catch(e){}
-  if (cached && typeof cached.n === 'number'){
-    show(cached.n);
-    if (Date.now() - cached.t < TTL) return;         // fresh enough — no request
-  }
+  try {
+    var cached = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (cached && typeof cached.n === 'number') show(cached.n);
+  } catch(e){}
+
   if (!REPO || !window.fetch) return;
   fetch('https://api.github.com/repos/' + REPO, { headers:{ Accept:'application/vnd.github+json' } })
     .then(function(r){ return r.ok ? r.json() : null; })
     .then(function(d){
-      if (!d || typeof d.stargazers_count !== 'number') return;
+      if (!d || typeof d.stargazers_count !== 'number') return;   // keep whatever is shown
       show(d.stargazers_count);
-      try { localStorage.setItem(KEY, JSON.stringify({ n:d.stargazers_count, t:Date.now() })); } catch(e){}
+      try { localStorage.setItem(KEY, JSON.stringify({ n:d.stargazers_count })); } catch(e){}
     })
     .catch(function(){});
 })();

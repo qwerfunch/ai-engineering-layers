@@ -161,9 +161,10 @@ edition.
 
 Alongside the language and theme toggles:
 
-- **Star** — links to this repository, with the live star count fetched from the GitHub API and
-  cached in `localStorage` for six hours, so a busy day of readers never trips the unauthenticated
-  rate limit. If the request fails, the count simply does not appear.
+- **Star** — links to this repository, with the live star count from the GitHub API. Stale-while-
+  revalidate: the cached number paints immediately, then the request corrects it. The cache never
+  suppresses the request, or the count would stay wrong for as long as the cache lived. A failed
+  request just leaves the cached value on screen.
 - **Share** — copy link, X, LinkedIn, Hacker News, plus the native share sheet where
   `navigator.share` exists. It shares `location.href`, so a reader who followed a table-of-contents
   link shares the exact section they are on.
