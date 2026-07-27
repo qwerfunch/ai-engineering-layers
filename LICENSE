@@ -1,0 +1,65 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 qwerfunch
+
+This license applies to the PROSE, DIAGRAMS, and other non-code content of this
+repository — including everything under `docs/`, this README, and the SVG figures
+in `docs/assets/img/`.
+
+Code examples are licensed separately under the MIT License. See LICENSE-CODE.
+
+------------------------------------------------------------------------------
+
+You are free to:
+
+  Share  — copy and redistribute the material in any medium or format
+  Adapt  — remix, transform, and build upon the material
+           for any purpose, even commercially.
+
+The licensor cannot revoke these freedoms as long as you follow the license
+terms.
+
+Under the following terms:
+
+  Attribution — You must give appropriate credit, provide a link to the license,
+  and indicate if changes were made. You may do so in any reasonable manner, but
+  not in any way that suggests the licensor endorses you or your use.
+
+  No additional restrictions — You may not apply legal terms or technological
+  measures that legally restrict others from doing anything the license permits.
+
+Notices:
+
+  You do not have to comply with the license for elements of the material in the
+  public domain or where your use is permitted by an applicable exception or
+  limitation.
+
+  No warranties are given. The license may not give you all of the permissions
+  necessary for your intended use. For example, other rights such as publicity,
+  privacy, or moral rights may limit how you use the material.
+
+------------------------------------------------------------------------------
+
+The full legal code of this license is available at:
+
+  https://creativecommons.org/licenses/by/4.0/legalcode
+
+and the human-readable summary at:
+
+  https://creativecommons.org/licenses/by/4.0/
+
+------------------------------------------------------------------------------
+
+THIRD-PARTY MATERIAL
+
+This work quotes and cites published material from third parties, including but
+not limited to Anthropic, OpenAI, Microsoft, Cognition, Chroma, Thoughtworks,
+Addy Osmani, Birgitta Böckeler, Drew Breunig, and the authors of the academic
+papers referenced in the text. Copyright in that material remains with its
+respective owners. It appears here only as attributed quotation with a link to
+the primary source, and is not covered by the license above.
+
+Suggested attribution:
+
+  "AI Engineering: The Five Layers" by qwerfunch, CC BY 4.0
+  https://github.com/qwerfunch/ai-engineering-layers

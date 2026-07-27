@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Engineering Layers — Prompt → Context → Harness → Loop → Graph</title>
+<meta name="description" content="A field guide to the five engineering layers of AI-assisted software development, in English and Korean.">
+<meta name="color-scheme" content="light dark">
+<link rel="alternate" hreflang="en" href="https://qwerfunch.github.io/ai-engineering-layers/en/">
+<link rel="alternate" hreflang="ko" href="https://qwerfunch.github.io/ai-engineering-layers/ko/">
+<link rel="alternate" hreflang="x-default" href="https://qwerfunch.github.io/ai-engineering-layers/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AI Engineering Layers">
+<meta property="og:title" content="AI Engineering Layers — Prompt → Context → Harness → Loop → Graph">
+<meta property="og:description" content="A field guide to the five engineering layers of AI-assisted software development. English and Korean editions.">
+<meta property="og:url" content="https://qwerfunch.github.io/ai-engineering-layers/">
+<meta property="og:image" content="https://qwerfunch.github.io/ai-engineering-layers/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<script>
+/* Locale gate.
+   1. An explicit choice made with the in-page switcher wins, forever.
+   2. Otherwise follow the browser / OS language list.
+   3. Anything that is not Korean lands on English.
+   The hash is carried across so deep links keep working.               */
+(function(){
+  var pick;
+  try { pick = localStorage.getItem('ael-lang'); } catch (e) {}
+  if (pick !== 'ko' && pick !== 'en') {
+    var list = navigator.languages && navigator.languages.length
+             ? navigator.languages
+             : [navigator.language || navigator.userLanguage || 'en'];
+    pick = 'en';
+    for (var i = 0; i < list.length; i++) {
+      var tag = String(list[i]).toLowerCase();
+      if (tag.indexOf('ko') === 0) { pick = 'ko'; break; }
+      if (tag.indexOf('en') === 0) { pick = 'en'; break; }
+    }
+  }
+  location.replace(pick + '/' + location.hash);
+})();
+</script>
+<style>
+:root{color-scheme:light dark;
+  --bg:#f9f9f7;--surface:#fcfcfb;--ink:#0b0b0b;--ink-2:#52514e;--muted:#898781;--border:rgba(11,11,11,.12);
+  --s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--s5:#e87ba4}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#0d0d0d;--surface:#1a1a19;--ink:#fff;--ink-2:#c3c2b7;--muted:#898781;--border:rgba(255,255,255,.14);
+  --s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500;--s5:#d55181}}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:grid;place-items:center;padding:32px;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,system-ui,sans-serif;letter-spacing:-.02em}
+.box{max-width:440px;text-align:center}
+h1{font-size:24px;font-weight:800;margin:0 0 6px;line-height:1.3}
+.flow{display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap;margin:14px 0 22px;
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;font-weight:700}
+.flow b{padding:3px 8px;border-radius:6px;background:var(--surface);border:1px solid var(--border)}
+.flow b:nth-of-type(1){color:var(--s1)}.flow b:nth-of-type(2){color:var(--s2)}
+.flow b:nth-of-type(3){color:var(--s3)}.flow b:nth-of-type(4){color:var(--s4)}
+.flow b:nth-of-type(5){color:var(--s5)}
+.flow i{color:var(--muted);font-style:normal}
+p{color:var(--ink-2);font-size:15px;line-height:1.6;margin:0 0 22px}
+.pick{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.pick a{display:inline-block;padding:11px 22px;border-radius:10px;border:1px solid var(--border);background:var(--surface);
+  color:var(--ink);text-decoration:none;font-weight:650;font-size:15px;transition:border-color .15s,transform .15s}
+.pick a:hover{border-color:var(--ink-2);transform:translateY(-1px)}
+small{display:block;margin-top:20px;color:var(--muted);font-size:12.5px}
+small a{color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="box">
+  <h1>AI Engineering Layers</h1>
+  <div class="flow"><b>Prompt</b><i>→</i><b>Context</b><i>→</i><b>Harness</b><i>→</i><b>Loop</b><i>→</i><b>Graph</b></div>
+  <p>Choose an edition. Your browser language is normally detected automatically — if you are seeing this, pick one below.</p>
+  <div class="pick">
+    <a href="en/" hreflang="en">Read in English</a>
+    <a href="ko/" hreflang="ko" lang="ko">한국어로 읽기</a>
+  </div>
+  <small><a href="https://github.com/qwerfunch/ai-engineering-layers">github.com/qwerfunch/ai-engineering-layers</a></small>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="336" viewBox="-18 -18 800 336">
+<defs>
+<marker id="ar1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#55554f"/></marker>
+<marker id="arKG" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#2ec98f"/></marker>
+<marker id="arLoop" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#e0a821"/></marker>
+<marker id="arGood" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#35c435"/></marker>
+<marker id="arBad" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#e96060"/></marker>
+<marker id="arS5" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#e88ab0"/></marker>
+<pattern id="hatch" width="7" height="7" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="7" stroke="#55554f" stroke-width="3"/></pattern>
+</defs>
+<rect x="-18" y="-18" width="800" height="336" rx="12" fill="#171716" stroke="#333331"/>
+
+  
+  
+  <line x1="30" y1="270" x2="30" y2="26" stroke="#55554f" stroke-width="1.6" fill="none" marker-end="url(#ar1)"/>
+  <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="9.5" font-weight="500" fill="#9a988f" x="24" y="150" transform="rotate(-90 24 150)" text-anchor="middle">the unit grows · the human moves further away</text>
+
+  <g>
+    <rect x="52" y="238" width="220" height="44" rx="9" fill="#17293e" stroke="#5c9de8" stroke-width="1.4"/>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" fill="#ffffff" x="66" y="258">1. Prompt</text>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="500" fill="#c3c2b7" x="66" y="273">one sentence</text>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="500" fill="#c3c2b7" x="292" y="264">human steps in every turn</text>
+  </g>
+  <g>
+    <rect x="52" y="186" width="290" height="44" rx="9" fill="#3a1d11" stroke="#ef7d4d" stroke-width="1.4"/>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" fill="#ffffff" x="66" y="206">2. Context</text>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="500" fill="#c3c2b7" x="66" y="221">one window</text>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="500" fill="#c3c2b7" x="362" y="212">human decides what goes in</text>
+  </g>
+  <g>
+    <rect x="52" y="134" width="360" height="44" rx="9" fill="#112c25" stroke="#2ec98f" stroke-width="1.4"/>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" fill="#ffffff" x="66" y="154">3. Harness</text>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="500" fill="#c3c2b7" x="66" y="169">one run</text>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="500" fill="#c3c2b7" x="432" y="160">human presses start</text>
+  </g>
+  <g>
+    <rect x="52" y="82" width="440" height="44" rx="9" fill="#332813" stroke="#e0a821" stroke-width="1.4"/>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" fill="#ffffff" x="66" y="102">4. Loop</text>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="500" fill="#c3c2b7" x="66" y="117">the repetition itself</text>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="500" fill="#c3c2b7" x="512" y="108">human designs the loop</text>
+  </g>
+  <g>
+    <rect x="52" y="30" width="530" height="44" rx="9" fill="#331a24" stroke="#e88ab0" stroke-width="1.4"/>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="12" font-weight="600" fill="#ffffff" x="66" y="50">5. Graph</text>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="500" fill="#c3c2b7" x="66" y="65">the arrangement of agents</text>
+    <text font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif" font-size="10.5" font-weight="500" fill="#c3c2b7" x="602" y="56">human designs the structure</text>
+  </g>
+
+</svg>
