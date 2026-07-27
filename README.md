@@ -140,7 +140,7 @@ docs/                         ← GitHub Pages root
     ├── styles.css            ← one stylesheet, shared by both editions
     ├── app.js                ← one script; all UI strings live in an i18n table
     ├── favicon.svg
-    ├── og.png                ← social preview
+    ├── og.png                ← social preview (source: tools/og.html)
     └── img/*.svg             ← diagrams extracted for this README (light + dark)
 ```
 
