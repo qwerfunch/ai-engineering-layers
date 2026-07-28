@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/og.png" alt="AI Engineering: The Five Layers — Prompt → Context → Harness → Loop → Graph" width="820">
+<img src="docs/assets/og.png" alt="AI Engineering: The Complete Guide — Prompt → Context → Harness → Loop → Graph" width="820">
 
 <br><br>
 
@@ -68,6 +68,31 @@ deterministic gates at layer 5.
 </picture>
 
 <div align="center"><sub>Each of the five moves has a matching anti-pattern. Skip verification and you get the most common one: <b>the nodding loop</b> — the agent writes the code, and the same agent declares it good.</sub></div>
+
+---
+
+## What layer 5 actually looks like
+
+Graph engineering is the layer people ask about most and picture least. Here is the execution graph
+you build in chapter 5, running: three lenses reading the same diff **in parallel and blind to each
+other**, every finding handed to an independent verifier whose job is to *refute* it, and the merge
+done in code rather than by a model.
+
+<div align="center">
+
+![Three lenses — correctness, security, performance — read one diff in parallel; each finding goes to an independent verifier that tries to refute it; one is rejected and the two survivors are merged by code](docs/assets/img/graph-engineering.gif)
+
+</div>
+
+**The ✕ is the whole point.** An agent asked to check its own work praises it; a separate agent
+prompted to *refute* it does not. Two findings survive, one does not, and no part of that decision
+was left to the model that produced them.
+
+**And you probably should not build this.** The guide is blunt about it: there are exactly three
+reasons to widen a loop into a graph — the context genuinely does not fit, you need independent
+viewpoints, or the scale exceeds what one conversation can coordinate. Without one of those, a graph
+multiplies your failure surface and your token bill and buys nothing. Anthropic's own measurement is
+**+90.2% over a single agent, at roughly 15× the tokens**.
 
 ---
 
@@ -142,7 +167,9 @@ docs/                         ← GitHub Pages root
     ├── favicon.svg
     ├── og.png                ← social preview, EN (source: tools/og-en.html)
     ├── og-ko.png             ← social preview, KO (source: tools/og-ko.html)
-    └── img/*.svg             ← diagrams extracted for this README (light + dark)
+    └── img/                  ← README artwork
+        ├── *.svg             ← diagrams from the guide (light + dark pairs)
+        └── graph-engineering.gif   ← the layer-5 execution graph, running
 ```
 
 Both editions share exactly one stylesheet and one script, and every heading `id` is identical
